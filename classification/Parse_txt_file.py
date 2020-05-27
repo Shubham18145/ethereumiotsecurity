@@ -7,18 +7,16 @@ def createCSV(filename):
     str = []
     newli = '\n'
     newstr = ""
-    arr = []
     for line in filearr:
         linearr = line.split(" ")
-        for k in linearr:
-            if k != newli:
-                arr.append(k)
-
-        if newli in line:
-            arr.append('\n')
-            str.append(arr)
-            arr = []
-
+        arr = linearr[:30]
+        #for k in linearr:
+            #if k != newli:
+        # for i in range(0,30):
+        #     arr.append(linearr[i])
+        # arr.append('\n')
+        new_arr = ",".join(arr)
+        str.append(new_arr)
     # print(filearr)
     #if filename=="cleveland.data":
     #    str=str[:282] #in case of cleveland.data, remove useless rows

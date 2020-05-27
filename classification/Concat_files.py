@@ -1,17 +1,25 @@
 import csv
 import pandas as pd
-filename1 = "X_train.txt"
-filename2 = "y_train.txt"
+import numpy as np
+# filename1 = "X_test.txt"
+# filename2 = "X_train.txt"
 
-#to get count of labels 0,1,2,3,4
-#Database:              0   1   2   3   4 Total
-#Cleveland(modified):  404 191  132  130  42 899
+# df_data_test = pd.read_csv(filename1,header=None, error_bad_lines=False)
+# df_data_train = pd.read_csv(filename1,header=None, error_bad_lines=False)
+# df_data.to_csv("X_test_2.csv",index=False)
+# print (df_data.head(1).shape)
 
-df_data = pd.read_csv(filename1,sep=" ",header=None)
-df_labels = pd.read_csv(filename2,header=None)
-print(df.shape[0],df.shape[1])
+filename3 = "X_train_cleaned.csv"
+filename4 = "y_train.csv"
+filename5 = "X_test_cleaned.csv"
+filename6 = "y_test.csv"
 
-#label = df.iloc[:,57:58]
-#print(df[58].value_counts())
-df_total = pd.concat([df_data,df_labels],axis=1)
-print(df_total)
+df_train_data = pd.read_csv(filename3)
+df_train_labels = pd.read_csv(filename4)
+df_test_data = pd.read_csv(filename5)
+df_test_labels = pd.read_csv(filename6)
+
+df_train_total = pd.concat([df_data,df_labels],axis=1)
+df_test_total = pd.concat([df_data,df_labels],axis=1)
+# print(df_total)
+np.array(df_train_data)
