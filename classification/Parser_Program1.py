@@ -1,7 +1,8 @@
 import csv
 import pandas as pd
 def createCSV(filename):
-    fileobj = open(filename,encoding='cp850')
+    #fileobj = open(filename,encoding='cp850')
+    fileobj = open(filename)
     filearr = fileobj.readlines()
     str = []
     newli = 'name'
@@ -19,8 +20,8 @@ def createCSV(filename):
             arr = []
 
     # print(filearr)
-    if filename=="cleveland.data":
-        str=str[:282] #in case of cleveland.data, remove useless rows
+    #if filename=="cleveland.data":
+    #    str=str[:282] #in case of cleveland.data, remove useless rows
     #print(str)
     newfilename = filename.replace(".data", ".csv")
     with open(newfilename, 'w', newline='') as csvfile:

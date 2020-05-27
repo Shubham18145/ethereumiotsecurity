@@ -1,8 +1,8 @@
 import Web3 from 'web3';
-import Crud from '../build/contracts/Crud.json';
+import Dataset from '../build/contracts/Dataset.json';
 
 let web3;
-let crud;
+let dataset;
 
 const initWeb3 = () => {
   return new Promise((resolve, reject) => {
@@ -29,24 +29,20 @@ const initWeb3 = () => {
 };
 
 const initContract = () => {
-  const deploymentKey = Object.keys(Crud.networks)[0];
+  const deploymentKey = Object.keys(Dataset.networks)[0];
   return new web3.eth.Contract(
-    Crud.abi,
-    Crud
+    Dataset.abi,
+    Dataset
       .networks[deploymentKey]
       .address
   );
 };
 
 const initApp = () => {
-  const $create = document.getElementById('create');
+  const $created = document.getElementById('create');
   const $createResult = document.getElementById('create-result');
   const $read = document.getElementById('read');
   const $readResult = document.getElementById('read-result');
-  const $edit = document.getElementById('edit');
-  const $editResult = document.getElementById('edit-result');
-  const $delete = document.getElementById('delete');
-  const $deleteResult = document.getElementById('delete-result');
   let accounts = [];
 
   web3.eth.getAccounts()
@@ -54,62 +50,72 @@ const initApp = () => {
     accounts = _accounts;
   });
 
-  $create.addEventListener('submit', (e) => {
+
+  $created.addEventListener('submit', (e) => {
     e.preventDefault();
     const name = e.target.elements[0].value;
-    crud.methods.create(name).send({from: accounts[0]})
+    let items = name.split(",")
+    console.log(items[0]+" "+items[1])
+    dataset.methods.insert(items[0],items[1]).send({"from": accounts[0], "gas": 300000})
     .then(result => {
-      $createResult.innerHTML = `New user ${name} successfully created`;
+      $createResult.innerHTML = `New dataitem ${name} successfully inserted`;
     })
     .catch(_e => {
-      $createResult.innerHTML = `Ooops... there was an error while trying to create a new user...`;
+      $createResult.innerHTML = `Ooops... there was an error while trying to insert a new data item...`;
     });
   });
 
   $read.addEventListener('submit', (e) => {
     e.preventDefault();
-    const id = e.target.elements[0].value;
-    crud.methods.read(id).call()
-    .then(result => {
-      $readResult.innerHTML = `Id: ${result[0]} Name: ${result[1]}`;
+//code added
+      dataset.methods.getcurrentsize().call()
+      .then(size => {
+        //str = "";
+        //$readResult.innerHTML = `size: ${size}`;
+        let str="", str2;
+        for (let i=1;i<size;i++){
+          dataset.methods.read(i).call()
+          .then(result => {
+            str2 = `${result[0]},${result[1]},${result[2]}`;
+            //$readResult.innerHTML = str;
+            str += str2+`\$`;
+            $readResult.innerHTML += str2+'\#';
+          })
+          .catch(_e => {
+            $readResult.innerHTML = `Ooops... there was an error while trying to read data item`;
+          });
+          //str = str+"index: "+i+"\n";
+        }
+        console.log(str);
+        str=""
+        $readResult.innerHTML = "";
+        // let i = 0;
+        // //for (i=0;i<size;i++){
+        //   dataset.methods.read(i).call()
+        //   .then(result => {
+        //     str = `${result[0]}, ${result[1]}, ${result[2]}\n`;
+        //     $readResult.innerHTML = str;
+        //   })
+        //   .catch(_e => {
+        //   $readResult.innerHTML = `Ooops... there was an error while trying to read data item`;
+        // });
+      //}
+        //$readResult.innerHTML = str;
     })
-    .catch(_e => {
-      $readResult.innerHTML = `Ooops... there was an error while trying to read user ${id}`;
-    });
-  });
+    //new code ends
 
-  $edit.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const id = e.target.elements[0].value;
-    const name = e.target.elements[1].value;
-    crud.methods.update(id, name).send({from: accounts[0]})
-    .then(result => {
-      $editResult.innerHTML = `Changed name of user ${id} to ${name}`;
-    })
     .catch(_e => {
-      $editResult.innerHTML = `Ooops... there was an error while trying to update name of user ${id} to ${name}`;
-    });
-  });
-
-  $delete.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const id = e.target.elements[0].value;
-    crud.methods.destroy(id).send({from: accounts[0]})
-    .then(result => {
-      $deleteResult.innerHTML = `Deleted user ${id}`;
-    })
-    .catch(_e => {
-      $deleteResult.innerHTML = `Ooops... there was an error while trying to delete iser ${id}`;
+      $readResult.innerHTML = `Ooops... there was an error while trying to read dataset length`;
     });
   });
 };
 
-document.addEventListener('DOMContentLoaded', () => {
-  initWeb3()
-    .then(_web3 => {
-      web3 = _web3;
-      crud = initContract();
-      initApp();
-    })
-    .catch(e => console.log(e.message));
-});
+  document.addEventListener('DOMContentLoaded', () => {
+    initWeb3()
+      .then(_web3 => {
+        web3 = _web3;
+        dataset = initContract();
+        initApp();
+      })
+      .catch(e => console.log(e.message));
+  });

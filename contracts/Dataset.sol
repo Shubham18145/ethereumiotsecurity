@@ -5,20 +5,20 @@ contract Dataset {
   struct Data {
     uint id;
     string item;
-    uint category; //to idetify filenames of dataset
+    string label; //to idetify filenames of dataset
   }
   Data[] public dataobj;
   uint public nextId = 1;
 
-  function insert(string memory data_item, uint category) public {
-    dataobj.push(Data(nextId, data_item, category));
+  function insert(string memory data_item, string memory label) public {
+    dataobj.push(Data(nextId, data_item, label));
     nextId++;
   }
 
 
-  function read(uint id) view public returns(uint, string memory, uint){
+  function read(uint id) view public returns(uint, string memory, string memory){
     uint index = find(id);
-    return (dataobj[index].id, dataobj[index].item, dataobj[index].category);
+    return (dataobj[index].id, dataobj[index].item, dataobj[index].label);
   }
 
   function destroy(uint id) public {
@@ -34,5 +34,10 @@ contract Dataset {
     }
     revert('Data item does not exist!');
   }
+
+  function getcurrentsize() view public returns (uint){
+    return dataobj.length;
+  }
+
 
 }
