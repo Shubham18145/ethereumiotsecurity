@@ -7,11 +7,10 @@ contract('Dataset', () => {
   });
 
   it('Should insert a new data item', async () => {
-    await dataset.insert('Hello',1);
+    await dataset.insert('Hello_item1');
     const user = await dataset.read(1);
     assert(user[0].toNumber() === 1);
-    assert(user[1] === 'Hello');
-    assert(user[2].toNumber() === 1);
+    assert(user[1] === 'Hello_item1');
   });
 
 });

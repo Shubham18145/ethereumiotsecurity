@@ -4,26 +4,20 @@ pragma solidity ^0.5.0;
 contract Dataset {
   struct Data {
     uint id;
-    string item;
-    string label; //to idetify filenames of dataset
+    string item; //includes features followed by label
   }
   Data[] public dataobj;
   uint public nextId = 1;
 
-  function insert(string memory data_item, string memory label) public {
-    dataobj.push(Data(nextId, data_item, label));
+  function insert(string memory data_item) public {
+    dataobj.push(Data(nextId, data_item));
     nextId++;
   }
 
 
-  function read(uint id) view public returns(uint, string memory, string memory){
+  function read(uint id) view public returns(uint, string memory){
     uint index = find(id);
-    return (dataobj[index].id, dataobj[index].item, dataobj[index].label);
-  }
-
-  function destroy(uint id) public {
-    uint index = find(id);
-    delete dataobj[index];
+    return (dataobj[index].id, dataobj[index].item);
   }
 
   function find(uint id) view internal returns(uint) {
