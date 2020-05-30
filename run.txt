@@ -1,0 +1,7 @@
+tests/ folder -> truffle test
+migrations/ folder - deploy smart contract to blockchain
+contracts/ folder - smart contract to be deployed
+truffle-config.js - Configuration file for truffle
+frontend/ - truffle develop
+frontend/ - migrate --reset
+frontend/ - npm start
