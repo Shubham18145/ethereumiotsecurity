@@ -21,5 +21,5 @@ df_test_labels = pd.read_csv(filename6)
 
 df_train_total = pd.concat([df_data,df_labels],axis=1)
 df_test_total = pd.concat([df_data,df_labels],axis=1)
-# print(df_total)
-np.array(df_train_data)
+
+# np.array(df_train_data)
