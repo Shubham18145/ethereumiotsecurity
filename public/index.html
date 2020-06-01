@@ -1,15 +1,25 @@
 <html>
   <head>
+    <title>Ethereum DAPP</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<!-- <script src="../client/code.js"></script> -->
+    <link  rel="stylesheet" href="./css/style.css" >
     <script src="bundle.js"></script>
   </head>
-  <body style="background-color:grey;">
+  <body>
+
+    <div class="header1 id="header1">
+      <h1>Ethereum Distributed Application To Secure IOT sensor data</h1>
+    </div>
+
+    <div class="imgcontainer" id="imgcontainer">
+    </div>
+
     <div class="container">
       <div class="row">
         <div class="col-sm-12">
-          <h1>Ethereum Distributed Application To Secure IOT sensor data</h1>
+          <!-- <h1>Ethereum Distributed Application To Secure IOT sensor data</h1> -->
           <form id="create">
             <h2>Enter Data</h2>
             <div class="form-group">
@@ -17,6 +27,7 @@
               <input id="name" type="text" class="form-control"></input>
             </div>
             <button id="input_submit" type="submit" class="btn btn-primary">Submit</button>
+            <button id="input_clean" type="reset" class="btn btn-primary">Clear</button>
             <p id="create-result"></p>
           </form>
 
@@ -43,5 +54,24 @@
         </div>
       </div>
     </div>
+
+  </div>
+    <h1>Project Description</h1>
+    <p>IoT dataset can be stored in Ethereum Blockchain instead of conventional databases as businesses look for ways to ensure
+      data security in this world marred by notorious breaches.</p>
+    <h1>Dataset Description</h1>
+    <h2>Human Activity Recognition Using Smartphones Data Set</h2>
+    <p>Human Activity Recognition database built from the recordings of 30 subjects performing activities of
+      daily living (ADL) while carrying a waist-mounted smartphone with embedded inertial sensors.</p>
+  </div>
+
+
+  <div class="footer" id="footer">
+    <a target="_blank" href="https://iiitd.ac.in/"><img src="../image/iiitdlogo.png"
+                            width="20%" height="100%"/></a>
+    <a target="_blank" href="https://archive.ics.uci.edu/ml/datasets/human+activity+recognition+using+smartphones/"><img src="../image/logo.gif"
+                            width="20%" height="100%"/></a>
+  </div>
+
   </body>
 </html>
