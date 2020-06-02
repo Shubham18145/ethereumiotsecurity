@@ -5,7 +5,7 @@ Source of dataset: (Reference: http://archive.ics.uci.edu/ml/datasets/Human+Acti
 
 It contains following python files: 
 
-1. Preprocess_Dataset.py _ It contains logic to preprocess, clean the dataset and convert data in .txt format to .csv format. Then it does sampling after meging test and train datasets to pick subset of dataset to be used as an input to Ethereum blockchain.  
+1. Preprocess_Dataset.py _ It contains logic to preprocess, clean the dataset. Then it does sampling after merging test and train datasets to pick subset of dataset to be used as an input to Ethereum blockchain.  
 
 2. Process_dataset_from_Blockchain.py - It contains logic to retrieve dataset from Ethereum and run machine learning algorithms (Naive Bayes, Random Forest and SVM) in order to calculate accuracy, recall, MCC.
 
@@ -16,6 +16,8 @@ Classes in our classification problem - Labels 1,4,5,6 (where labels 1,2,3 are m
 
 
 Steps to run:
+
+Assumption: Datasets are converted from .txt to .csv file format with removal of improper symbols, whitelines.
 
 1. Generate "preprocessed_data_to_blockchain.txt" by running Preprocess_Dataset.py
 
