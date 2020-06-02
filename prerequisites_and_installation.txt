@@ -1,0 +1,14 @@
+Prerequisites: Web development - Frontend (HTML, CSS, JS), Backend(node.js, Webpack.js), Blockchain - truffle, metamask, solidity
+
+1. Install node js LTS version from nodejs.org
+    tar -xf node*.tar.gz --directory /usr/local --strip-components 1
+
+2. Install truffle
+    npm install -g truffle
+    npm install truffle-hdwallet-provider
+
+3. Install dependencies for node.js
+    npm install
+
+4. Install metamask which would for connecting to Ropsten testnet (Ethereum test network)
+    Install metamask extension for Google Chrome - https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn/related?hl=en

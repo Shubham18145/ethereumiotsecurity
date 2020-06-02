@@ -1,15 +1,12 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-from sklearn.impute import SimpleImputer
 from sklearn.naive_bayes import GaussianNB, MultinomialNB
 from sklearn.ensemble import RandomForestClassifier
 from sklearn import svm
 from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import confusion_matrix, classification_report, accuracy_score, f1_score, recall_score, precision_score, roc_curve, auc, matthews_corrcoef
 from sklearn.model_selection import train_test_split
-from sklearn.linear_model import LogisticRegression
-
 
 file_read = open("data_retrieved_from_blockchain.txt","r")
 input_data = file_read.readlines()
@@ -19,9 +16,7 @@ input_data[0]
 for i in range(len(input_data))
     input_data[i] = (input_data[i].split(":")[1].split('"')[1]).split(',')
 
-
 input_data = np.array(input_data)
-
 
 total_labels = input_data[:,-1].astype(np.float).astype(np.int)
 total_data  = input_data[:,:-1].astype(np.float)
@@ -29,7 +24,6 @@ total_data  = input_data[:,:-1].astype(np.float)
 for i in range(len(total_labels)):
     if(total_labels[i] <= 3):
         total_labels[i] = 1
-
 
 from sklearn.model_selection import train_test_split
 X_train, X_test, y_train, y_test = train_test_split(total_data, total_labels, test_size=0.33, random_state=100)

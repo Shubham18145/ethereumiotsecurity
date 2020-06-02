@@ -1,5 +1,0 @@
-Install node js LTS from nodejs.org
-tar -xf node*.tar.gz --directory /usr/local --strip-components 1
-install truffle -> npm install -g truffle
-npm install truffle-hdwallet-provider
-npm install - to install dependencies
